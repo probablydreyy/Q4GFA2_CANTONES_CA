@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top:1vw;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multiplication Table Generator</h1>
+    <p>Only enter numbers between 2 and 10.</p>
+    <label for="inputRows"></label>
+    <input type="number" id="inputRows" name="inputRows">
+    <span>by</span>
+    <label for="inputColumns"></label>
+    <input type="number" id="inputColumns" name="inputColumns">
+    <button onclick="generateTable()">Generate Table</button>
+
+    <div id="tableContainer"></div>
+
+    <script>
+        function generateTable() {
+            var numCols = parseInt(document.getElementById("inputColumns").value);
+            var numRows = parseInt(document.getElementById("inputRows").value);
+
+            if (numCols < 2 || numCols > 10 || numRows < 2 || numRows > 10) {
+                alert("Please enter numbers between 2 and 10");
+                return;
+            }
+
+            var table = "<table>";
+            table += "<tr><th></th>";
+            for (var i = 1; i <= numCols; i++) {
+                table += "<th>" + i + "</th>";
+            }
+            table += "</tr>";
+            for (var n = 1; n <= numRows; n++) {
+                table += "<tr>";
+                table += "<td><b>" + n + "</b></td>";
+                for (var x = 1; x <= numCols; x++) {
+                    table += "<td>" + (n * x) + "</td>";
+                }
+                table += "</tr>";
+            }
+            table += "</table>";
+
+            document.getElementById("tableContainer").innerHTML = table;
+        }
+    </script>
+</body>
+</html>
